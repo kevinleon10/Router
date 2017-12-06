@@ -67,17 +67,5 @@ public class Interface {
 
         cacheTable.displayTable();
 
-        /*Deprecated, ya no se usa, esto preguntaba las direcciones de cada vecino al dispatcher, pero se eliminó por que causa mucho tráfico de red, además
-        se tenían que meter las direcciones físicas de los vecinos hardcode, ya no, ahora el router espera que el dispatcher le envié a los vecinos
-        //Actualizar tabla cache de nodos de red
-        Iterator<Neighbour> iterator = cacheTable.getLocalNetwork().iterator();
-        Neighbour actualObject;
-        while (iterator.hasNext()) {
-            actualObject = iterator.next();
-            if (!actualObject.getMacAddress().equals(myMacAddress)) {
-                (new Thread(new Sender(cacheTable.dispatcherPort, cacheTable.dispatcherIp, actualObject.getMacAddress() + ";" + "*", ""))).start();
-            }
-        }*/
-
     }
 }

@@ -190,13 +190,6 @@ public class Receiver implements Runnable{
                                 System.out.println("Nuevo Mensaje con formato desconocido: " + serverMessage+"\n");
                             }
                             break;
-                        /* Deprecated, ya el dispatcher no responde al router, solo manda los vecinos sin haberselo solicitado
-                        case 2:
-                            //Respuesta negativa del dispatcher
-                            System.out.print(serverMessage + "\n");
-                            (new Thread(new Sender(cacheTable.dispatcherPort, cacheTable.dispatcherIp, msg[0] + ";" + "*", "error"))).start();
-                            break;
-                        */
                         default:
                             System.out.println("Nuevo Mensaje con formato desconocido: " + serverMessage+"\n");
                             break;
