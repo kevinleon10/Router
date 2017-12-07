@@ -1,7 +1,7 @@
 package com.ci1320.ecci.ucr.ac.cr.routingTable;
 
 /**
- * Created by lskev on 3-Nov-17.
+ * Created by GrupoBolinchas on 3-Nov-17.
  */
 public class Route {
     private String networkName;

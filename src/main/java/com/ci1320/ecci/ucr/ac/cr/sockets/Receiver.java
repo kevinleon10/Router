@@ -1,17 +1,15 @@
 package com.ci1320.ecci.ucr.ac.cr.sockets;
 
-import com.ci1320.ecci.ucr.ac.cr.cacheTable.CacheTable;
+import com.ci1320.ecci.ucr.ac.cr.arpTable.ARPTable;
 import com.ci1320.ecci.ucr.ac.cr.routingTable.RoutingTable;
-
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Created by lskev on 6-Nov-17.
+ * Created by GrupoBolinchas on 6-Nov-17.
  */
 public class Receiver implements Runnable{
     //variables necesarias para recibir mensajes
@@ -24,7 +22,7 @@ public class Receiver implements Runnable{
     protected String sharedMemoryIp;
     protected String falseIp;
     RoutingTable routingTable = RoutingTable.getInstance();
-    CacheTable cacheTable = CacheTable.getInstance();
+    ARPTable cacheTable = ARPTable.getInstance();
 
     /**
      * Establece los valores del servidor
@@ -190,13 +188,6 @@ public class Receiver implements Runnable{
                                 System.out.println("Nuevo Mensaje con formato desconocido: " + serverMessage+"\n");
                             }
                             break;
-                        /* Deprecated, ya el dispatcher no responde al router, solo manda los vecinos sin haberselo solicitado
-                        case 2:
-                            //Respuesta negativa del dispatcher
-                            System.out.print(serverMessage + "\n");
-                            (new Thread(new Sender(cacheTable.dispatcherPort, cacheTable.dispatcherIp, msg[0] + ";" + "*", "error"))).start();
-                            break;
-                        */
                         default:
                             System.out.println("Nuevo Mensaje con formato desconocido: " + serverMessage+"\n");
                             break;

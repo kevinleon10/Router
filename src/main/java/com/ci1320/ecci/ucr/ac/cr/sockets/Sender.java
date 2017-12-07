@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * Created by lskev on 6-Nov-17.
+ * Created by GrupoBolinchas on 6-Nov-17.
  */
 public class Sender implements Runnable{
     //variables del emisor
@@ -36,10 +36,6 @@ public class Sender implements Runnable{
      */
     public void startSender() throws IOException, InterruptedException {
         Boolean trying = false;
-        /* Deprecated, ya no hay mensaje de error
-        /*if(type.equals("error")){
-            Thread.sleep(15000);
-        }*/
         while (!connected) {
             try {
                 if (trying) {

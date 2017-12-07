@@ -1,6 +1,5 @@
-package com.ci1320.ecci.ucr.ac.cr.cacheTable;
+package com.ci1320.ecci.ucr.ac.cr.arpTable;
 
-import com.ci1320.ecci.ucr.ac.cr.routingTable.Route;
 import com.ci1320.ecci.ucr.ac.cr.routingTable.RoutingTable;
 
 import java.net.UnknownHostException;
@@ -9,11 +8,12 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by lskev on 5-Nov-17.
+ * Created by GrupoBolinchas on 5-Nov-17.
  */
-public class CacheTable {
+public class ARPTable {
+
     //Variables únicas
-    public static CacheTable cacheTableInstance;
+    public static ARPTable cacheTableInstance;
     //Variables del dispatcher
     public static String dispatcherIp;
     public static int dispatcherPort;
@@ -21,7 +21,7 @@ public class CacheTable {
     //Solo una instancia
     static {
         try {
-            cacheTableInstance = new CacheTable();
+            cacheTableInstance = new ARPTable();
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -31,14 +31,14 @@ public class CacheTable {
     RoutingTable routingTable = RoutingTable.getInstance();
 
     //Lista de vecinos
-    private List<Neighbour> localNetwork;
+    private List<Node> localNetwork;
 
     /**
      * Crea la tabla caché
      * @throws UnknownHostException
      */
-    private CacheTable() throws UnknownHostException {
-        localNetwork = new ArrayList<Neighbour>();
+    private ARPTable() throws UnknownHostException {
+        localNetwork = new ArrayList<Node>();
         dispatcherIp = "";
         dispatcherPort = 1024;
     }
@@ -52,7 +52,7 @@ public class CacheTable {
      * @throws UnknownHostException
      */
     public void addNeighbour(String macAddress, String ip, int port, String falseIp) throws UnknownHostException {
-        Neighbour newNode = new Neighbour(macAddress, ip, port, falseIp);
+        Node newNode = new Node(macAddress, ip, port, falseIp);
         localNetwork.add(newNode);
     }
 
@@ -60,9 +60,9 @@ public class CacheTable {
      * Imprime la tabla caché
      */
     public synchronized void displayTable() {
-        Iterator<Neighbour> iterator = localNetwork.iterator();
+        Iterator<Node> iterator = localNetwork.iterator();
         System.out.print("\nNodos de Red Local\n");
-        Neighbour actualObject;
+        Node actualObject;
         while (iterator.hasNext()) {
             actualObject = iterator.next();
             System.out.println("||" + actualObject.getMacAddress() + "||" + actualObject.getIp() + "||" + actualObject.getPort() + "||\n");
@@ -73,9 +73,9 @@ public class CacheTable {
      * @return Devuelve la única instancia de tabla caché
      * @throws UnknownHostException
      */
-    public static synchronized CacheTable getInstance() throws UnknownHostException {
+    public static synchronized ARPTable getInstance() throws UnknownHostException {
         if (cacheTableInstance == null) {
-            cacheTableInstance = new CacheTable();
+            cacheTableInstance = new ARPTable();
         }
         return cacheTableInstance;
     }
@@ -85,8 +85,8 @@ public class CacheTable {
      * @return Devuelve un booleano que indica si un vecino existe o no
      */
     public boolean neighbourExists(String macAddress) {
-        Iterator<Neighbour> iterator = localNetwork.iterator();
-        Neighbour actualObject;
+        Iterator<Node> iterator = localNetwork.iterator();
+        Node actualObject;
         boolean found = false;
         while (iterator.hasNext() && !found) {
             actualObject = iterator.next();
@@ -102,8 +102,8 @@ public class CacheTable {
      * @return Devuelve un booleano que indica si un vecino está o no
      */
     public boolean isNeighbour(String falseIp) {
-        Iterator<Neighbour> iterator = localNetwork.iterator();
-        Neighbour actualObject;
+        Iterator<Node> iterator = localNetwork.iterator();
+        Node actualObject;
         boolean found = false;
         while (iterator.hasNext() && !found) {
             actualObject = iterator.next();
@@ -115,8 +115,8 @@ public class CacheTable {
     }
 
     public String getThrough(String falseIp){
-        Iterator<Neighbour> iterator = localNetwork.iterator();
-        Neighbour actualObject;
+        Iterator<Node> iterator = localNetwork.iterator();
+        Node actualObject;
         String through = "";
         while (iterator.hasNext() && through.equals("")) {
             actualObject = iterator.next();
@@ -132,8 +132,8 @@ public class CacheTable {
      * @return Devuelve la ip de un vecino
      */
     public String getNeighbourIp(String macAddress) {
-        Iterator<Neighbour> iterator = localNetwork.iterator();
-        Neighbour actualObject;
+        Iterator<Node> iterator = localNetwork.iterator();
+        Node actualObject;
         boolean found = false;
         String ipNodo = "";
         while (iterator.hasNext() && !found) {
@@ -151,8 +151,8 @@ public class CacheTable {
      * @return Devuelve el puerto de un vecino
      */
     public int getNeighbourPort(String macAddress) {
-        Iterator<Neighbour> iterator = localNetwork.iterator();
-        Neighbour actualObject;
+        Iterator<Node> iterator = localNetwork.iterator();
+        Node actualObject;
         boolean found = false;
         int portNode = 0;
         while (iterator.hasNext() && !found) {
@@ -172,8 +172,8 @@ public class CacheTable {
      * @param port
      */
     public void editNeighbour(String sender, String ip, int port, String falseIp) {
-        Iterator<Neighbour> iterator = localNetwork.iterator();
-        Neighbour actualObject;
+        Iterator<Node> iterator = localNetwork.iterator();
+        Node actualObject;
         boolean found = false;
         while (iterator.hasNext() && !found) {
             actualObject = iterator.next();

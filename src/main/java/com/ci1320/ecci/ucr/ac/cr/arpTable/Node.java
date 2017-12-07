@@ -1,9 +1,9 @@
-package com.ci1320.ecci.ucr.ac.cr.cacheTable;
+package com.ci1320.ecci.ucr.ac.cr.arpTable;
 
 /**
- * Created by lskev on 5-Nov-17.
+ * Created by GrupoBolinchas on 5-Nov-17.
  */
-public class Neighbour {
+public class Node {
     private String macAddress;
     private String ip;
     private int port;
@@ -16,7 +16,7 @@ public class Neighbour {
      * @param port
      * @param falseIp
      */
-    public Neighbour(String macAddress, String ip, int port, String falseIp) {
+    public Node(String macAddress, String ip, int port, String falseIp) {
         this.macAddress = macAddress;
         this.ip = ip;
         this.falseIp = falseIp;

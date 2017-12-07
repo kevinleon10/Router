@@ -1,12 +1,11 @@
 package com.ci1320.ecci.ucr.ac.cr.routingTable;
 
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by lskev on 3-Nov-17.
+ * Created by GrupoBolinchas on 3-Nov-17.
  */
 public class RoutingTable {
 
